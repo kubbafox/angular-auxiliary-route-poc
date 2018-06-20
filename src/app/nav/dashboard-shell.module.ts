@@ -41,6 +41,9 @@ export class DashboardShellModule implements OnInit {
       .subscribe((data: { loan: Loans }) => {
         this.loan = data.loan;
       });
+
+    this.goToSummary(this.loan);
+
   }
 
   goToSummary(loan: Loans) {
