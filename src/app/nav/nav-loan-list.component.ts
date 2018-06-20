@@ -1,33 +1,37 @@
-import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
-import { Loans, LoanService } from './loan.service';
-import { Observable }            from 'rxjs';
-import { switchMap }             from 'rxjs/operators';
+import {Loans, LoanService} from './loan.service';
+import {Observable} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+
 
 @Component({
   template: `
-    <ul class="items">
-      <li *ngFor="let loan of loans$ | async"
-        [class.selected]="loan.id === selectedId">
-        <a [routerLink]="[loan.id]">
-          <span class="badge">{{ loan.id }}</span>{{ loan.name }}
-        </a>
-      </li>
-    </ul>
-
+    <mat-toolbar>
+      <ul style="display: flex">
+        <li *ngFor="let loan of loans$ | async"
+            [class.selected]="loan.id === selectedId" style="margin-left: 40px;">
+          <a [routerLink]="[loan.id]">
+            <span class="badge">{{ loan.id }}</span>{{ loan.name }}
+          </a>
+        </li>
+      </ul>
+    </mat-toolbar>
     <router-outlet></router-outlet>
   `
 })
 
 export class NavLoanListComponent implements OnInit {
   loans$: Observable<Loans[]>;
+  path: String;
   selectedId: number;
 
   constructor(
     private service: LoanService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.loans$ = this.route.paramMap.pipe(
@@ -36,5 +40,9 @@ export class NavLoanListComponent implements OnInit {
         return this.service.getLoans();
       })
     );
+  }
+
+  getPath() {
+    return this.selectedId.toString().concat('/summary');
   }
 }

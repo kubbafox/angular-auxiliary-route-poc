@@ -5,12 +5,8 @@ import {Loans} from "./loan.service";
 @Component({
   template: `
     <div>
-      <H5>Details</H5>
-      You selected:
-      <div>
-        <label>Id: </label>{{ loan.id }}
-        <label>Name: </label>{{ loan.name }}
-      </div>
+        <span>Id: </span>{{ loan.id }}
+        <span>Name: </span>{{ loan.name }}
     </div>
   `,
 })

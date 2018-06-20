@@ -6,6 +6,7 @@ import {DashboardShellModule} from "./dashboard-shell.module";
 import {NavLoanDetailsComponent} from "./nav-loan-details.component";
 import {NavDetailResolver} from "./nav-detail-resolver.service";
 import {DashboardSummaryComponent} from "./dashboard-summary.component";
+import {DashboardPaymentComponent} from "./dashboard-payment.component";
 
 const navRoutes: Routes = [
   {
@@ -30,7 +31,12 @@ const navRoutes: Routes = [
               {
               path: 'summary',
               component: DashboardSummaryComponent
-              }],
+              },
+              {
+                path: 'payment',
+                component: DashboardPaymentComponent
+              }
+              ],
           }
         ]
       }

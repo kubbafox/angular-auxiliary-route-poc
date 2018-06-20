@@ -5,13 +5,13 @@ import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   template: `
-    <div>This is summary page</div>
-    <div>Summary for {{ loanID }}</div>
-    <div>Summary for {{ loanName }}</div>
+    <div>This is payment page</div>
+    <div>payment for {{ loanID }}</div>
+    <div>payment for {{ loanName }}</div>
   `,
 })
 
-export class DashboardSummaryComponent implements OnInit {
+export class DashboardPaymentComponent implements OnInit {
 
   loanID: String;
   loanName: String;
@@ -25,5 +25,4 @@ export class DashboardSummaryComponent implements OnInit {
     this.loanID = this.route.snapshot.paramMap.get('loanID');
     this.loanName = this.route.snapshot.paramMap.get('loanName');
   }
-
 }

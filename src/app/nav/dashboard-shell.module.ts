@@ -5,23 +5,28 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   template: `
-    <div>----DashBoard-module-----</div>
     <div>
       You selected:
-      <div>
         <label>Id: </label>{{ loan.id }}
         <label>Name: </label>{{ loan.name }}
-      </div>
     </div>
-    
-    <div>Menu</div>
-    <nav>
-      <div>
-        <button (click)="goToSummary(loan)">Summary</button>
-      </div>
-    </nav>
+
+    <!--<mat-tab-group>-->
+      <!--<mat-tab label="Summary" (click)="goToSummary(loan)"></mat-tab>-->
+      <!--<mat-tab label="Payment" (click)="goToPayment(loan)"></mat-tab>-->
+    <!--</mat-tab-group>-->
+
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="Summary" (click)="goToSummary(loan)">Summary</mat-button-toggle>
+        <mat-button-toggle value="Payment" (click)="goToPayment(loan)">Payment</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <!--<button mat-raised-button	(click)="goToSummary(loan)">Summary</button>-->
+      <!--<button mat-raised-button	(click)="goToPayment(loan)">Payment</button>-->
+    </mat-grid-list>
+
     <router-outlet></router-outlet>
-    <div>----DashBoard-module-----</div>
 
   `,
 })
@@ -33,21 +38,25 @@ export class DashboardShellModule implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
+
   }
 
   ngOnInit() {
-    console.log('Data from route', this.route.data)
     this.route.data
       .subscribe((data: { loan: Loans }) => {
         this.loan = data.loan;
+        this.goToSummary(this.loan);
       });
-
-    this.goToSummary(this.loan);
 
   }
 
-  goToSummary(loan: Loans) {
+  private goToSummary(loan: Loans) {
     this.router.navigate([`nav/${loan.id}/summary`, {loanID: loan.id, loanName: loan.name}])
+    // this.router.navigate([`/summary`, {loan: loan}])
+  }
+
+  private goToPayment(loan: Loans) {
+    this.router.navigate([`nav/${loan.id}/payment`, {loanID: loan.id, loanName: loan.name}])
     // this.router.navigate([`/summary`, {loan: loan}])
   }
 }

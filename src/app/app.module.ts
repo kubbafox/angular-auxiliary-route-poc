@@ -4,9 +4,10 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import {NavModule} from "./nav/nav.module";
+import {MaterialModule} from "./material/material.module";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/nav/1/summary', pathMatch: 'full' },
+  { path: '', redirectTo: '/nav/1', pathMatch: 'full' },
   {
     path: 'nav',
     loadChildren: './nav/nav.module#NavModule'
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
     NavModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    MaterialModule,
   ],
   exports:[RouterModule],
   providers: [],
