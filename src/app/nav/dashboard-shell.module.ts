@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Loans} from "../nav/loan.service";
+import {Loans} from "./loan.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 
@@ -16,11 +16,11 @@ import {ActivatedRoute, Router} from "@angular/router";
     
     <div>Menu</div>
     <nav>
-      <a routerLink="summary" routerLinkActive="active">Summary</a>
-      <a routerLink="payment" routerLinkActive="active">Payment</a>
+      <div>
+        <button (click)="goToSummary(loan)">Summary</button>
+      </div>
     </nav>
     <router-outlet></router-outlet>
-
     <div>----DashBoard-module-----</div>
 
   `,
@@ -31,6 +31,7 @@ export class DashboardShellModule implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
   ) {
   }
 
@@ -40,6 +41,11 @@ export class DashboardShellModule implements OnInit {
       .subscribe((data: { loan: Loans }) => {
         this.loan = data.loan;
       });
+  }
+
+  goToSummary(loan: Loans) {
+    this.router.navigate([`nav/${loan.id}/summary`, {loanID: loan.id, loanName: loan.name}])
+    // this.router.navigate([`/summary`, {loan: loan}])
   }
 }
 

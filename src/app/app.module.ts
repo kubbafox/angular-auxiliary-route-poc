@@ -4,7 +4,6 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import {NavModule} from "./nav/nav.module";
-import {DashboardModule} from "./dashboard/dashboard.module";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/nav/1/summary', pathMatch: 'full' },
@@ -20,7 +19,6 @@ const appRoutes: Routes = [
   ],
   imports: [
     NavModule,
-    DashboardModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
   ],
