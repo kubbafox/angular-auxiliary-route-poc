@@ -5,15 +5,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import {NavModule} from "./nav/nav.module";
 import {MaterialModule} from "./material/material.module";
+import {AppGuard} from "./app.guard";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/nav/1', pathMatch: 'full' },
-  {
-    path: 'nav',
-    loadChildren: './nav/nav.module#NavModule'
+  { path: '', redirectTo: '/nav/1', pathMatch: 'full', canActivate: [AppGuard]
+  },
+  {path: 'nav', loadChildren: './nav/nav.module#NavModule', canActivate: [AppGuard]
   },
 ]
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,11 +20,11 @@ const appRoutes: Routes = [
   imports: [
     NavModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    RouterModule.forRoot(appRoutes, {enableTracing:false}),
     MaterialModule,
   ],
   exports:[RouterModule],
-  providers: [],
+  providers: [AppGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

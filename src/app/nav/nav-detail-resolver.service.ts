@@ -13,7 +13,7 @@ export class NavDetailResolver implements Resolve<Loans> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Loans> {
     let id = route.paramMap.get('id');
 
-    console.log('NavDetailResolver is triggered, id is', id);
+    // console.log('NavDetailResolver is triggered, id is', id);
 
     return this.loanService.getLoan(id).pipe(
       take(1),

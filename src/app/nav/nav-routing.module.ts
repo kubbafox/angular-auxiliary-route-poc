@@ -7,6 +7,7 @@ import {NavLoanDetailsComponent} from "./nav-loan-details.component";
 import {NavDetailResolver} from "./nav-detail-resolver.service";
 import {DashboardSummaryComponent} from "./dashboard-summary.component";
 import {DashboardPaymentComponent} from "./dashboard-payment.component";
+import {AppGuard} from "../app.guard";
 
 const navRoutes: Routes = [
   {
@@ -16,21 +17,25 @@ const navRoutes: Routes = [
       {
         path: '',
         component: NavLoanListComponent,
+        canActivate: [AppGuard],
         children: [
           {
             path: ':id',
-            component: DashboardShellModule,
             resolve: {
               loan: NavDetailResolver,
             },
+            component: DashboardShellModule,
+            canActivate: [AppGuard],
+
             children: [
               // {
-              //   path: '',
-              //   redirectTo: 'summary',
+              //   path: 'nav/:id',
+              //   redirectTo: DashboardSummaryComponent,
               // },
               {
               path: 'summary',
-              component: DashboardSummaryComponent
+              component: DashboardSummaryComponent,
+
               },
               {
                 path: 'payment',

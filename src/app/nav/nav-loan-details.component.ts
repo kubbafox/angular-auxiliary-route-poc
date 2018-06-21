@@ -19,10 +19,10 @@ export class NavLoanDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('Data from route', this.route.data)
-    this.route.data
-      .subscribe((data: { loan: Loans }) => {
-        this.loan = data.loan;
-      });
+    // console.log('Data from route', this.route.data)
+    // this.route.data
+    //   .subscribe((data: { loan: Loans }) => {
+    //     this.loan = data.loan;
+    //   });
   }
 }
