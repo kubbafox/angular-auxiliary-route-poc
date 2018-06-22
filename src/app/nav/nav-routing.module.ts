@@ -8,10 +8,11 @@ import {NavDetailResolver} from "./nav-detail-resolver.service";
 import {DashboardSummaryComponent} from "./dashboard-summary.component";
 import {DashboardPaymentComponent} from "./dashboard-payment.component";
 import {AppGuard} from "../app.guard";
+import {NewDashboardModule} from "../new-dashboard/new-dashboard.module";
 
 const navRoutes: Routes = [
   {
-    path: 'nav',
+    path: '',
     component: NavComponent,
     children: [
       {
@@ -24,24 +25,25 @@ const navRoutes: Routes = [
             resolve: {
               loan: NavDetailResolver,
             },
-            component: DashboardShellModule,
-            canActivate: [AppGuard],
+            loadChildren: '../new-dashboard/new-dashboard.module#NewDashboardModule'
 
-            children: [
-              // {
-              //   path: 'nav/:id',
-              //   redirectTo: DashboardSummaryComponent,
-              // },
-              {
-              path: 'summary',
-              component: DashboardSummaryComponent,
-
-              },
-              {
-                path: 'payment',
-                component: DashboardPaymentComponent
-              }
-              ],
+            // component: DashboardShellModule,
+            // canActivate: [AppGuard],
+            // children: [
+            //   // {
+            //   //   path: 'nav/:id',
+            //   //   redirectTo: DashboardSummaryComponent,
+            //   // },
+            //   {
+            //   path: 'summary',
+            //   component: DashboardSummaryComponent,
+            //
+            //   },
+            //   {
+            //     path: 'payment',
+            //     component: DashboardPaymentComponent
+            //   }
+            //   ],
           }
         ]
       }

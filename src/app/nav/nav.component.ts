@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {LoanService} from "./loan.service";
 
 @Component({
   template: `
@@ -7,5 +9,15 @@ import {Component} from '@angular/core';
   `
 })
 
-export class NavComponent {
+export class NavComponent implements OnInit {
+  constructor(
+    private router: Router,
+  ) {
+
+  }
+
+  ngOnInit() {
+    // this.router.navigate(['nav/1'])
+  }
+
 }

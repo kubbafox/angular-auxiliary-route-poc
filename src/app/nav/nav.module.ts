@@ -15,6 +15,7 @@ import {
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
+import {NewDashboardModule} from "../new-dashboard/new-dashboard.module";
 
 
 @NgModule({
@@ -26,8 +27,7 @@ import {
     MatButtonModule,
     MatGridListModule,
     MatButtonToggleModule,
-    MatRadioModule
-  ],
+    MatRadioModule],
   exports: [MatToolbarModule, MatTabsModule, MatButtonModule, MatGridListModule, MatButtonToggleModule, MatRadioModule],
   declarations: [
     NavComponent,
